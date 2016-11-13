@@ -1,0 +1,14 @@
+{
+  "name": "jarvis_slack",
+  "version": "1.0.0",
+  "description": "A slack bot to do some shit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "botkit": "^0.4.1"
+  }
+}
