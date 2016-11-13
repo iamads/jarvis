@@ -32,12 +32,12 @@ var reply_with_meaning  = function(bot, message, word) {
     })
 }
 
-controller.hears(['[a-zA-Z]\?'], ['direct_message'], function(bot, message){
+controller.hears(['[a-zA-Z][?]'], ['direct_message'], function(bot, message){
     word = message.text
     reply_with_meaning(bot, message, word.slice(0, -1));
 });
 
-controller.hears(['[a-zA-Z]\s\?'], ['direct_message'], function(bot, message){
+controller.hears(['[a-zA-Z]\s[?]'], ['direct_message'], function(bot, message){
     word = message.text
     reply_with_meaning(bot, message, word.split("")[0])
 })
