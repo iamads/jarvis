@@ -1,12 +1,12 @@
 var Botkit = require('botkit');
 var request = require('request');
+var config = require('./config')
 
 var controller = Botkit.slackbot({
     debug: false
 });
-
 controller.spawn({
-    token: '',
+    token: config.slack.app_key,
 }).startRTM()
 
 controller.hears('hello',['direct_message'], function(bot,message) {
@@ -14,7 +14,22 @@ controller.hears('hello',['direct_message'], function(bot,message) {
 });
 
 var reply_with_meaning  = function(bot, message, word) {
-    bot.reply(message, word);   
+    
+    request( {
+        url: 'https://od-api.oxforddictionaries.com/api/v1/entries/en/'+word,
+        headers: {
+            app_id: config.oxford.app_id,
+            app_key: config.oxford.app_key,
+            accept: 'application/json'
+        }
+    }, function(err, response, body){
+        if (!err && response.statusCode == 200){
+            bot.reply(message, body)
+        }
+        else{
+            console.log(message, "SHIT happened!!")
+        }
+    })
 }
 
 controller.hears(['[a-zA-Z]\?'], ['direct_message'], function(bot, message){
