@@ -26,8 +26,8 @@ var reply_with_meaning  = function(bot, message, word) {
         if (!err && response.statusCode == 200){
 	    obj = JSON.parse(body);
 	    examples = ""
-	    efinitions = obj.results[0].lexicalEntries[0].entries[0].senses[0].definitions;
-	    if ("examples" in obj.results[1].lexicalEntries[0].entries[0].senses[0]){
+	    definitions = obj.results[0].lexicalEntries[0].entries[0].senses[0].definitions;
+	    if ("examples" in obj.results[0].lexicalEntries[0].entries[0].senses[0]){
 	    	examples = obj.results[0].lexicalEntries[0].entries[0].senses[0].examples.map(function (arg) {return arg.text});
 		examples = '\n' +'Examples:\n' + examples.join("\n")
 	    } 
